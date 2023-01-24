@@ -14,28 +14,29 @@ import sys
 #  1. INTEGER n
 #  2. INTEGER m
 #
-from typing import List
+"""                      .
+    n m     P1 lose      .
+    2 2       .          . 
+    1 4     . .          . P2 lose
+    
+    1. if m = 1, then P2 auto win
+    2. if n % 2 = 1, P1 wins
+"""
 
-def towerBreakers(n: int, m: int) -> None:
-    """
-    n m               .
-    2 2       W.      .
-    1 4    .  .       .
-                      .
-    """
-    print(1%2)
-    i=0
+
+def towerBreakers(n, m):
+
+    i = 0
     while i < n:
         if m == 1:
-            return 2 #P1 cant move, P2 wins
+            return 2
         else:
-            if n%2 == 1: # if odd number of towers, P1 wins
+            if n % 2 == 1:
                 return 1
-            else: 
+            else:
                 return 2
-        i += 1
-    
-        
+
+
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
@@ -53,4 +54,3 @@ if __name__ == '__main__':
         fptr.write(str(result) + '\n')
 
     fptr.close()
-

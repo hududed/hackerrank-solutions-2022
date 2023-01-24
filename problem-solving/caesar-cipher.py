@@ -15,8 +15,9 @@ import string
 #  2. INTEGER k
 #
 
+
 def caesarCipher(s: str, k: int) -> str:
-    res=""
+    res = ""
     for i in range(len(s)):
         if s[i].isalpha():
             if s[i].isupper():
@@ -28,13 +29,14 @@ def caesarCipher(s: str, k: int) -> str:
                 (which equals len(symbols_low) and len(symbols_up)) to apply the
                 rotation without exceeding the allowed integer value. 
                 """
-                res+=chr(ord('A')+(ord(s[i])-ord('A')+k)%26)
+                res += chr(ord('A')+(ord(s[i])-ord('A')+k) % 26)
             else:
-                res+=chr(ord('a')+(ord(s[i])-ord('a')+k)%26)    
+                res += chr(ord('a')+(ord(s[i])-ord('a')+k) % 26)
         else:
-            res+=s[i]
+            res += s[i]
+            # print(s[i], ord(s[i]), ord('A'), ord('a'), (ord))
     return res
-            
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
@@ -50,4 +52,3 @@ if __name__ == '__main__':
     fptr.write(result + '\n')
 
     fptr.close()
-
