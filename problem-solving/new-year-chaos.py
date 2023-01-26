@@ -34,13 +34,30 @@ def minimumBribes(q: List[int]) -> None:
     min_bribes = 0
 
     for i in range(len(q)-1, -1, -1):
-        if q[i] - (i+1) > 2:  # cannot bribe more than 2
-            print('Too chaotic')
-            return
-        for j in range(max(0, q[i]-2), i):
-            if q[j] > q[i]:
+        if q[i] != (i+1):
+            if (i-1 >= 0) and q[i-1] == (i+1):
+                q[i-1] = q[i]
+                q[i] = i+1
                 min_bribes += 1
+            elif (i-2 >= 0) and q[i-2] == (i+1):
+                q[i-2] = q[i-1]
+                q[i-1] = q[i]
+                q[i] = i+1
+                min_bribes += 2
+            else:
+                print("Too chaotic")
+                return
     print(min_bribes)
+
+    # SHORTER! BUT MORE CONFUSING
+    # for i in range(len(q)-1, -1, -1):
+    #     if q[i] - (i+1) > 2:  # cannot bribe more than 2
+    #         print('Too chaotic')
+    #         return
+    #     for j in range(max(0, q[i]-2), i):
+    #         if q[j] > q[i]:
+    #             min_bribes += 1
+    # print(min_bribes)
 
 
 if __name__ == '__main__':
