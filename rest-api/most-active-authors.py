@@ -1,6 +1,7 @@
-import requests
 import json
 from typing import List
+
+import requests
 
 
 def getUsernames(threshold: int) -> List[str]:

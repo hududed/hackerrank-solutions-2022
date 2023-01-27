@@ -44,11 +44,10 @@ def maximumTransfer(name: str, city: str) -> tuple[str]:
             print(i+1, "/", len(data_list), user_name,
                   user_city, total_credit, total_debit)
             if user["userName"] == name and user_city == city:
+                amount = user["amount"].replace(",", "").replace("$", "")
                 if user["txnType"] == "credit":
-                    amount = user["amount"].replace(",", "").replace("$", "")
                     total_credit += float(amount)
                 elif user["txnType"] == "debit":
-                    amount = user["amount"].replace(",", "").replace("$", "")
                     total_debit += float(amount)
 
     return f"${total_credit:.2f}", f"${total_debit:.2f}"
