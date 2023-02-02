@@ -18,23 +18,18 @@ import sys
 
 def dynamicArray(n, queries):
     arr = [[] for _ in range(n)]
-    lastAnswer = 0
-    res = []
+    lastAns = 0
+    ans = []
 
-    for i in range(len(queries)):
-        if queries[i][0] == 1:
-            x = queries[i][1]
-            y = queries[i][2]
-            idx = (x ^ lastAnswer) % n
-            arr[idx].append(y)
+    for q in queries:
+        x, y = q[1], q[2]
+        i = ((x ^ lastAns) % n)
+        if q[0] == 1:
+            arr[i].append(y)
         else:
-            x = queries[i][1]
-            y = queries[i][2]
-            idx = (x ^ lastAnswer) % n
-            lastAnswer = arr[idx][y % len(arr[idx])]
-            res.append(lastAnswer)
-            # print(queries[i], idx, arr,lastAnswer, res)
-    return res
+            lastAns = arr[i][y % len(arr[i])]
+            ans.append(lastAns)
+    return ans
 
 
 if __name__ == '__main__':

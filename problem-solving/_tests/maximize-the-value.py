@@ -15,10 +15,12 @@ def rearrange(arr):
     q = n - 1
     for i in range(n):
         if (i+1) % 2 == 0:
+            # even numbers get largest value
             ans[i] = arr[q]
             q -= 1
             print(i, ans)
         else:
+            # odd numbers get minimum
             ans[i] = arr[p]
             p += 1
 

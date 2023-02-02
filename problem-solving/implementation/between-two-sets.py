@@ -5,8 +5,6 @@ import os
 import random
 import re
 import sys
-
-
 #
 # Complete the 'getTotalX' function below.
 #
@@ -15,33 +13,33 @@ import sys
 #  1. INTEGER_ARRAY a
 #  2. INTEGER_ARRAY b
 #
-"""
-    2 4
-    16 32 96
-    
-    1. get all possible even divisions between 1 and min of b
-    2. get all elements in b not dividable by all elem in a,  b % a != 0
-    3. get difference between the two
-"""
+from functools import reduce
+
+
+def gcd(a, b):
+    # greatest common division
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+
+
+def lcm(a, b):
+    # lowest common multiplier
+    return a*b // gcd(a, b)
 
 
 def getTotalX(a, b):
-    even_divs = []
-    to_remove = []
-    for num in range(1, min(b)+1):
-        if min(b) % num == 0:
-            even_divs.append(num)
-            # print(min(b), num)
-    for div in even_divs:
-        for num_b in b:
-            if num_b % div != 0 and div not in to_remove:
-                to_remove.append(div)
-            # print(num_b, div, to_remove)
-        for num_a in a:
-            if div % num_a != 0 and div not in to_remove:
-                to_remove.append(div)
-            # print(num_a, div, to_remove)
-    return len(even_divs)-len(to_remove)
+
+    l = reduce(lcm, a)
+    g = reduce(gcd, b)
+
+    # print (l, g)
+    s = 0
+    for i in range(l, g+1, l):
+        if g % i == 0:
+            s += 1
+    return s
+    # print(i, g %i)
 
 
 if __name__ == '__main__':
