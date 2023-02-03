@@ -5,7 +5,6 @@ import os
 import random
 import re
 import sys
-
 #
 # Complete the 'isValid' function below.
 #
@@ -16,18 +15,29 @@ from collections import Counter
 
 
 def isValid(s):
-    result = dict(Counter(s))
-    list1 = list(result.values())
-    high = max(list1)
-    print(list1, high)
+    counted = dict(Counter(s))
 
-    if len(dict(Counter(list1))) == 1:
+    # case 1: same frequency
+    if len(set(counted.values())) == 1:
         return "YES"
-    elif list1.count(high) == 1 and high - 1 == min(list1):
-        return "YES"
-    elif list1.count(high) > 1 and list1.count(min(list1)) == 1:
-        return "YES"
+
+    # case 2: 3 or more frequencies
+    elif len(set(counted.values())) > 2:
+        return "NO"
+    # case 3: 2 freqs
     else:
+        for k in counted:
+            counted[k] -= 1
+            temp = list(counted.values())
+            try:
+                temp.remove(0)
+            except:
+                pass
+            if len(set(temp)) == 1:
+                return "YES"
+            else:
+                counted[k] += 1
+            # print(counted, len(set(temp)))
         return "NO"
 
 

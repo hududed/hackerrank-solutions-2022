@@ -27,7 +27,7 @@ def pairs(k, arr):
             ans += 1
             i += 1
             j += 1
-        elif arr[j] - arr[i] < k:
+        elif arr[j] - arr[i] < k:  # starts at 0
             j += 1
         elif arr[j] - arr[i] > k:
             i += 1

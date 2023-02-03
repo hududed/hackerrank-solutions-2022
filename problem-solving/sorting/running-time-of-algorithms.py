@@ -14,19 +14,20 @@ import sys
 #
 
 
-def runningTime(l):
-    count = 0
-    for i in range(1, len(l)):
-        inner_count = 0
-        key = l[i]
-        j = i
-        while (j > 0) and (l[j-1] > key):
-            l[j] = l[j-1]
-            inner_count += 1
-            j -= 1
-        count += inner_count
-        l[j] = key
-    return (count)
+def runningTime(arr):
+    shift = 0
+    for j in range(1, len(arr)):
+        key = arr[j]  # to be sorted
+        i = j
+        while i > 0 and arr[i-1] > key:
+            arr[i] = arr[i-1]
+            shift += 1
+            i -= 1
+        arr[i] = key
+        # print(j, i, arr, shift)
+    return shift
+    # print(j, arr[j])
+    # Write your code here
 
 
 if __name__ == '__main__':
