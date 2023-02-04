@@ -12,28 +12,21 @@ import sys
 # The function is expected to return a STRING.
 # The function accepts STRING_ARRAY grid as parameter.
 #
-"""
-    ebacd    grid[1][0] > grid[0][0]
-    fghij
-    olmkn
-    trpqs
-    xywuv
-
-    1. sort each row alphabetrically
-    2. return the col 
-    2. check if sorted col is equal to col -> TRUE: YES, FALSE: NO
-"""
 
 
 def gridChallenge(grid):
+    grid = [list(row) for row in grid]
+    r = len(grid)
+    c = len(grid[0])
 
-    f = [sorted(x) for x in grid]
-    c = list(zip(*f))
+    for i in range(r):
+        grid[i].sort()
 
-    for i in range(len(c)):
-        if tuple(sorted(c[i])) != c[i]:
-            return 'NO'
-    return 'YES'
+    for j in range(c):
+        for i in range(1, r):
+            if not grid[i-1][j] <= grid[i][j]:
+                return "NO"
+    return "YES"
 
 
 if __name__ == '__main__':
