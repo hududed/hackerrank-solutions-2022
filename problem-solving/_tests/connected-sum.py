@@ -39,6 +39,8 @@ def connected(graph_nodes, graph_from, graph_to):
     g = [[] for _ in range(n)]
     counter = [0] * n
 
+    # print(visited)
+
     def dfs(n, g, visited, ci):
         if visited[n]:
             return
@@ -50,10 +52,11 @@ def connected(graph_nodes, graph_from, graph_to):
     for x, y in zip(graph_from, graph_to):
         g[x].append(y)
         g[y].append(x)
-
+    # print(g)
     ret = 0
     ci = 0
     for i in range(n):
+        print(i, visited[i])
         if not visited[i]:
             dfs(i, g, visited, ci)
             ret += math.ceil(math.sqrt(counter[ci]))
@@ -63,9 +66,9 @@ def connected(graph_nodes, graph_from, graph_to):
 
 def main():
     # graph_nodes, graph_from, graph_to = 10, [1, 1, 2, 3, 7], [2, 3, 4, 5, 8]
-    graph_nodes = 8
-    graph_to = [1, 1, 3, 5, 6]
-    graph_from = [2, 6, 4, 7, 3]
+    graph_nodes = 8  # 8
+    graph_to = [1, 1, 3, 5, 6]  # [1, 1]  #
+    graph_from = [2, 6, 4, 7, 3]  # [2,4]
 
     # graph_nodes, graph_from, graph_to = 10, [1, 1, 2, 3, 7], [2, 3, 4, 5, 8]
     print(connected(graph_nodes, graph_from, graph_to))
